@@ -5,8 +5,9 @@
     { "path": "./tsconfig.vite.json" }
   ],
   "compilerOptions": {
+    "allowJs": true,
     "checkJs": true,
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true
