@@ -2,7 +2,10 @@
   "files": [],
   "references": [
     { "path": "./tsconfig.node.json" },
-    { "path": "./tsconfig.vite.json" }
+    { "path": "./tsconfig.app.json"},
+    {
+      "path": "./tsconfig.spec.json"
+    }
   ],
   "compilerOptions": {
     "allowJs": true,
@@ -10,6 +13,10 @@
     "verbatimModuleSyntax": false,
     "skipLibCheck": true,
     "strict": true,
-    "noEmit": true
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./app/*"]
+    }
   }
 }

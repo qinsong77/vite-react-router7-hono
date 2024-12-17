@@ -11,7 +11,7 @@ import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
-  { ignores: ['dist', 'src/components/ui', 'src/service/petstore'] },
+  { ignores: ['dist', 'app/components/ui', 'build', '.react-router', 'e2e'] },
   {
     files: ['**/*.{ts,tsx}'],
     settings: { react: { version: '18.3' } },

@@ -10,7 +10,7 @@ coverage
 .vscode
 .idea
 
-src/components/ui
+app/components/ui
 
 # Ignore all HTML files:
 **/*.html

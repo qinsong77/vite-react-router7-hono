@@ -1,6 +1,22 @@
-# Vite React-router7 hono App
+# Vite React-router7 Hono App
 
 crated by `pnpm dlx create-react-router@latest --template remix-run/react-router-templates/node-custom-server`
+
+
+## Notes
+
+if a route has `clientLoader`, it's won't support SSR.
+
+todo https://github.com/honojs/vite-plugins/tree/main/packages/dev-server
+
+## Refer
+
+- https://github.com/yusukebe/hono-remix-adapter
+- https://github.com/remix-run/react-router-templates/blob/main/node-custom-server/server.js
+- https://github.com/sergiodxa/remix-hono/blob/main/src/handler.ts
+- https://github.com/SoraKumo001/react-router7-hono
+- https://github.com/rphlmr/react-router-hono-server?tab=readme-ov-file#options
+
 
 ---
 # Welcome to React Router!
