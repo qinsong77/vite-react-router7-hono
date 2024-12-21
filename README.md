@@ -2,6 +2,13 @@
 
 crated by `pnpm dlx create-react-router@latest --template remix-run/react-router-templates/node-custom-server`
 
+## Getting Started
+
+1. `pnpm install`
+2. `docker-compose up`
+3. `drizzle-kit push`
+4. `pnpm run dev`
+
 ## Notes
 
 if a route has `clientLoader`, it's won't support SSR, preview nothing when access `http://localhost:3000/client-page` directly.
