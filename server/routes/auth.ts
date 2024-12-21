@@ -33,6 +33,7 @@ const app = new Hono()
         passwordHash: hashedPassword,
       })
       return c.json({ message: "User registered successfully" }, 201)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       return c.json({ message: "Registration failed" }, 400)
     }

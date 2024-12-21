@@ -1,5 +1,6 @@
 import { GalleryVerticalEnd } from "lucide-react"
 import { NavLink } from "react-router"
+
 import placeholder from "~/assets/placeholder.png"
 import { SignUpForm } from "~/features/auth/signup-form"
 

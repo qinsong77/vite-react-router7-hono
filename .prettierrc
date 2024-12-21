@@ -12,8 +12,8 @@
   "importOrder": [
     "^@core/(.*)$",
     "<THIRD_PARTY_MODULES>",
-    "^@/(.*)$",
-    "^@ui/(.*)$",
+    "^~/(.*)$",
+    "^~ui/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,

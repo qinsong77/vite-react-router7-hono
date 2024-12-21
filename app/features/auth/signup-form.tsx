@@ -1,6 +1,7 @@
 import { useActionState } from "react"
 import { NavLink } from "react-router"
 import { useNavigate } from "react-router"
+
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
@@ -47,9 +48,13 @@ export function SignUpForm({
 
       await navigate("/sign-in")
       return { success: true }
-    } catch (err) {
+    } catch (err: unknown) {
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "Failed to register, please try again"
       return {
-        error: "Failed to register, please try again",
+        error: errorMessage,
         payload: formData,
       }
     }

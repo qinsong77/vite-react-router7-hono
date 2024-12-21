@@ -24,7 +24,7 @@ export default function GitHubStars({ stars }: { stars: number[] }) {
           {popularRepos.map((repo, index) => (
             <Card
               key={repo.name}
-              className="transform transition-all duration-300 hover:scale-105 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800"
+              className="transition-all duration-300 hover:scale-105 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800"
             >
               <CardHeader>
                 <CardTitle className="text-xl font-semibold">
@@ -36,7 +36,7 @@ export default function GitHubStars({ stars }: { stars: number[] }) {
                   >
                     <span>{repo.name}</span>
                     <svg
-                      className="h-4 w-4"
+                      className="size-4"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -56,7 +56,7 @@ export default function GitHubStars({ stars }: { stars: number[] }) {
                   <div className="text-center">
                     <div className="mb-2 flex items-center justify-center">
                       <svg
-                        className="h-5 w-5 text-yellow-400"
+                        className="size-5 text-yellow-400"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -75,7 +75,9 @@ export default function GitHubStars({ stars }: { stars: number[] }) {
             </Card>
           ))}
         </div>
-        <p className="mt-4 text-lg text-red-500">Above starts data are get by loader on the server!</p>
+        <p className="mt-4 text-lg text-red-500">
+          Above starts data are get by loader on the server!
+        </p>
       </div>
     </section>
   )

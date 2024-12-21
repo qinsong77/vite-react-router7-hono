@@ -1,5 +1,6 @@
 import { client } from "app/endpoint"
 import { useState } from "react"
+
 import { Button } from "~/components/ui/button"
 
 import type { Route } from "./+types/_landing.client-page"

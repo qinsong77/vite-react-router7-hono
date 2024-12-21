@@ -1,4 +1,4 @@
-import { siteConfig } from "~/constant"
+// import { siteConfig } from "~/constant"
 import { getRandomNumbers } from "~/endpoint"
 import HomePage from "~/features/home/home-page"
 

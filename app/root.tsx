@@ -6,12 +6,20 @@ import {
   ScrollRestoration,
   isRouteErrorResponse,
 } from "react-router"
+
 import NotFound from "~/components/not-found"
-import { META_THEME_COLORS } from "~/constant"
+import { META_THEME_COLORS, siteConfig } from "~/constant"
 
 import type { Route } from "./+types/root"
 import stylesheet from "./app.css?url"
 import { Providers } from "./components/providers"
+
+export function meta() {
+  return [
+    { title: siteConfig.name },
+    { name: "description", content: siteConfig.description },
+  ]
+}
 
 export const links: Route.LinksFunction = () => [
   // { rel: "preconnect", href: "https://fonts.googleapis.com" },

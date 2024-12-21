@@ -1,5 +1,6 @@
 import { useTheme } from "next-themes"
 import * as React from "react"
+
 import { META_THEME_COLORS } from "~/constant"
 
 export function useMetaColor() {

@@ -1,6 +1,7 @@
 import { useActionState } from "react"
 import { NavLink } from "react-router"
 import { useNavigate } from "react-router"
+
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
@@ -40,9 +41,13 @@ export function LoginForm({
       // const data = await res.json()
       await navigate("/")
       return { success: true }
-    } catch (err) {
+    } catch (err: unknown) {
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "Failed to login, please check your email and password"
       return {
-        error: "Failed to login, please check your email and password",
+        error: errorMessage,
         payload: formData,
       }
     }

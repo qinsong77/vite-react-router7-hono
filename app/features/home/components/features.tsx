@@ -38,7 +38,7 @@ const Features = () => {
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
             Everything You Need
           </h2>
-          <p className="max-w-[900px] text-gray-500 dark:text-gray-400 md:text-xl mt-4">
+          <p className="mt-4 max-w-[900px] text-gray-500 dark:text-gray-400 md:text-xl">
             A complete toolkit for modern web development. Built with
             performance and developer experience in mind.
           </p>
@@ -51,7 +51,7 @@ const Features = () => {
             >
               <div className="space-y-4">
                 <div className="flex items-center space-x-2">
-                  <CheckCircle2 className="h-6 w-6 text-purple-500" />
+                  <CheckCircle2 className="size-6 text-purple-500" />
                   <h3 className="font-bold">{feature.name}</h3>
                 </div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">

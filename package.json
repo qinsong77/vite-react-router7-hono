@@ -25,7 +25,7 @@
     "test:e2e": "playwright test",
     "test:watch": "vitest",
     "lint": "eslint .",
-    "lint-and-format:fix": "eslint src --fix && prettier . --write",
+    "lint-and-format:fix": "eslint app server --fix && prettier . --write",
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
     "turbo:check": "turbo lint format type-check test",

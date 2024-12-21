@@ -1,10 +1,10 @@
 export const env = {
-  DATABASE_URL: process.env.DATABASE_URL!,
-  REDIS_URL: process.env.REDIS_URL!,
-  PORT: Number.parseInt(process.env.PORT || "3000"),
-  NODE_ENV: process.env.NODE_ENV || "development",
-  SESSION_SECRET: process.env.SESSION_SECRET!,
-  SESSION_EXPIRES: Number.parseInt(process.env.SESSION_EXPIRES || "86400"),
+  DATABASE_URL: process.env.DATABASE_URL,
+  REDIS_URL: process.env.REDIS_URL,
+  PORT: Number.parseInt(process.env.PORT),
+  NODE_ENV: process.env.NODE_ENV,
+  SESSION_SECRET: process.env.SESSION_SECRET,
+  SESSION_EXPIRES: Number.parseInt(process.env.SESSION_EXPIRES),
 } as const
 
 const requiredEnvVars = ["DATABASE_URL", "REDIS_URL", "SESSION_SECRET"] as const

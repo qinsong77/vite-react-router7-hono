@@ -11,15 +11,17 @@ export interface ReactRouterMiddlewareOptions {
 
 /**
  * this middleware must be the last
+ * refer: https://github.com/sergiodxa/remix-hono/blob/main/src/handler.ts
  */
 export function createReactRouterMiddleware({
   mode,
   build,
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   getLoadContext = (c) => c.env as unknown as AppLoadContext,
 }: ReactRouterMiddlewareOptions) {
   return createMiddleware(async (c) => {
-    let requestHandler = createRequestHandler(build, mode)
-    let loadContext = getLoadContext(c)
+    const requestHandler = createRequestHandler(build, mode)
+    const loadContext = getLoadContext(c)
     return await requestHandler(
       c.req.raw,
       loadContext instanceof Promise ? await loadContext : loadContext

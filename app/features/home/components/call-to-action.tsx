@@ -1,4 +1,5 @@
 import { BookOpen, Github } from "lucide-react"
+
 import { Button } from "~/components/ui/button"
 
 const CallToAction = () => {
@@ -18,7 +19,8 @@ const CallToAction = () => {
               size="lg"
               className="w-full bg-white text-purple-600 hover:bg-gray-100 sm:w-auto"
             >
-              <Github className="mr-2 h-5 w-5" />
+              {/* eslint-disable-next-line @typescript-eslint/no-deprecated */}
+              <Github className="mr-2 size-5" />
               Clone Repository
             </Button>
             <Button
@@ -26,21 +28,27 @@ const CallToAction = () => {
               variant="outline"
               className="w-full bg-white text-purple-600 hover:bg-gray-100 sm:w-auto"
             >
-              <BookOpen className="mr-2 h-5 w-5" />
+              <BookOpen className="mr-2 size-5" />
               Read Documentation
             </Button>
           </div>
           <div className="mt-8 flex flex-col items-center justify-center space-y-4 text-sm text-gray-200 sm:flex-row sm:space-x-4 sm:space-y-0">
             <div className="flex items-center space-x-2">
-              <span className="rounded-full bg-white/10 px-4 py-1.5">MIT License</span>
+              <span className="rounded-full bg-white/10 px-4 py-1.5">
+                MIT License
+              </span>
             </div>
             <div className="hidden sm:block">•</div>
             <div className="flex items-center space-x-2">
-              <span className="rounded-full bg-white/10 px-4 py-1.5">TypeScript First</span>
+              <span className="rounded-full bg-white/10 px-4 py-1.5">
+                TypeScript First
+              </span>
             </div>
             <div className="hidden sm:block">•</div>
             <div className="flex items-center space-x-2">
-              <span className="rounded-full bg-white/10 px-4 py-1.5">Production Ready</span>
+              <span className="rounded-full bg-white/10 px-4 py-1.5">
+                Production Ready
+              </span>
             </div>
           </div>
         </div>

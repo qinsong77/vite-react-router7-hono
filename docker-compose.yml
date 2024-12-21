@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   postgres:
     image: postgres:15.6
@@ -20,7 +20,7 @@ services:
       timeout: 5s
       retries: 5
     restart: unless-stopped
-#    shm_size: '2gb'
+    #    shm_size: '2gb'
     command:
       - "postgres"
       - "-c"
@@ -37,7 +37,8 @@ services:
       - redis_data:/data
     command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-yourpassword}
     healthcheck:
-      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-yourpassword}", "ping"]
+      test:
+        ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-yourpassword}", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5

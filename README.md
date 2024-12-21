@@ -2,31 +2,30 @@
 
 crated by `pnpm dlx create-react-router@latest --template remix-run/react-router-templates/node-custom-server`
 
-
 ## Notes
 
-if a route has `clientLoader`, it's won't support SSR.
-
-todo https://github.com/honojs/vite-plugins/tree/main/packages/dev-server
+if a route has `clientLoader`, it's won't support SSR, preview nothing when access `http://localhost:3000/client-page` directly.
 
 Environment variables in `.env` powered by [Vite](https://vite.dev/guide/env-and-mode.html#env-variables-and-modes), `server.js` can't access them.
 
+## TBD
+
+- using, https://github.com/honojs/vite-plugins/tree/main/packages/dev-server
+
 ## Refer
 
-- https://github.com/yusukebe/hono-remix-adapter
 - https://github.com/remix-run/react-router-templates/blob/main/node-custom-server/server.js
+- https://github.com/yusukebe/hono-remix-adapter
 - https://github.com/sergiodxa/remix-hono/blob/main/src/handler.ts
+- https://github.com/rphlmr/react-router-hono-server
 - https://github.com/SoraKumo001/react-router7-hono
-- https://github.com/rphlmr/react-router-hono-server?tab=readme-ov-file#options
-
-https://www.robinwieruch.de/react-feature-architecture/
-https://www.robinwieruch.de/react-component-composition/
 
 ## Know Issues
 
 - docker `postgresql-init` not working, flyway `Unrecognised migration name format: 0000_messy_domino.sql`, using `drizzle-kit push` instead.
 
 ---
+
 # Welcome to React Router!
 
 A modern, production-ready template for building full-stack React applications using React Router.

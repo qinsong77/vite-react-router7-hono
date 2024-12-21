@@ -1,46 +1,57 @@
+import {
+  Cog,
+  Database,
+  Layers,
+  CodepenIcon as ReactIcon,
+  Repeat,
+  Server,
+  Terminal,
+  Zap,
+} from "lucide-react"
+
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
-import { CodepenIcon as ReactIcon, Cog, Repeat, Zap, Server, Terminal, Database, Layers } from 'lucide-react'
 
 const technologies = [
-  { 
+  {
     name: "React 19",
-    description: "Build user interfaces with the latest React features including use hooks",
-    icon: ReactIcon 
+    description:
+      "Build user interfaces with the latest React features including use hooks",
+    icon: ReactIcon,
   },
-  { 
+  {
     name: "Vite",
     description: "Lightning fast HMR and optimized build process",
-    icon: Zap 
+    icon: Zap,
   },
-  { 
+  {
     name: "React Router 7",
     description: "Modern routing with data loading and mutations",
-    icon: Repeat 
+    icon: Repeat,
   },
-  { 
+  {
     name: "Edge Runtime",
     description: "Deploy globally with minimal latency",
-    icon: Server 
+    icon: Server,
   },
-  { 
+  {
     name: "Hono",
     description: "Ultra-fast web framework for modern runtimes",
-    icon: Cog 
+    icon: Cog,
   },
-  { 
+  {
     name: "TypeScript",
     description: "Write safer, more maintainable code",
-    icon: Terminal 
+    icon: Terminal,
   },
-  { 
+  {
     name: "Node.js",
     description: "Built on the powerful V8 JavaScript engine",
-    icon: Layers 
+    icon: Layers,
   },
-  { 
+  {
     name: "Drizzle ORM",
     description: "Next-generation TypeScript ORM",
-    icon: Database 
+    icon: Database,
   },
 ]
 
@@ -54,21 +65,27 @@ const Technologies = () => {
               Cutting Edge Stack
             </h2>
             <p className="max-w-[900px] text-gray-500 dark:text-gray-400 md:text-xl">
-              Built with the latest technologies to ensure the best performance and developer experience.
+              Built with the latest technologies to ensure the best performance
+              and developer experience.
             </p>
           </div>
         </div>
         <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {technologies.map((tech) => (
-            <Card key={tech.name} className="border-none shadow-lg transition-all duration-200 hover:shadow-xl">
+            <Card
+              key={tech.name}
+              className="border-none shadow-lg transition-all duration-200 hover:shadow-xl"
+            >
               <CardHeader>
                 <div className="flex items-center space-x-2">
-                  <tech.icon className="h-6 w-6 text-purple-500" />
+                  <tech.icon className="size-6 text-purple-500" />
                   <CardTitle className="text-lg">{tech.name}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-500 dark:text-gray-400">{tech.description}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  {tech.description}
+                </p>
               </CardContent>
             </Card>
           ))}
@@ -79,4 +96,3 @@ const Technologies = () => {
 }
 
 export default Technologies
-

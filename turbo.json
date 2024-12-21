@@ -6,7 +6,7 @@
     },
     "build": {
       "dependsOn": ["type-check", "lint", "format", "test", "^build"],
-      "outputs": ["dist/**"],
+      "outputs": ["build/**"],
       "env": []
     },
     "lint": {},

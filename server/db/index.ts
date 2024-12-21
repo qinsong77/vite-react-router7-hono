@@ -13,6 +13,6 @@ const pool = new Pool({
 
 export const db = drizzle(pool, { schema })
 
-const result = await db.execute("select 1")
+await db.execute("select 1")
 
 logger.info("pg connected")

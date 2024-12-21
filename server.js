@@ -78,6 +78,4 @@ if (IS_DEV) {
       console.log(`Server is running on http://localhost:${PORT}`)
     }
   )
-
 }
-
