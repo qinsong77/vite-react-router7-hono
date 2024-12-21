@@ -19,7 +19,7 @@ export function ThemeSwitcher({ className }: { className?: string }) {
         ? META_THEME_COLORS.light
         : META_THEME_COLORS.dark
     )
-  }, [resolvedTheme, setTheme])
+  }, [resolvedTheme, setMetaColor, setTheme])
 
   return (
     <Button

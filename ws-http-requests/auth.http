@@ -1,0 +1,36 @@
+### Environment variables
+@host = http://localhost:3000/api
+
+### Register new user
+POST {{host}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "Test123!@#"
+}
+
+### Login user
+# @name login
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "Test123!@#"
+}
+
+> {% client.global.set("auth_cookie", response.headers.valueOf("Set-Cookie")); %}
+
+
+### Logout user
+POST {{host}}/auth/logout
+Cookie: {{auth_cookie}}
+
+### Get user profile
+GET {{host}}/user/profile
+Cookie: {{auth_cookie}}
+
+### Delete account
+DELETE {{host}}/user/account
+Cookie: {{auth_cookie}}

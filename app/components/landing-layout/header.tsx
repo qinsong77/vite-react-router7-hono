@@ -7,12 +7,19 @@ import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet"
 
 // https://www.nico.fyi/blog/tailwind-css-group-modifier-to-prevent-react-rerender
 const menuItems = [
-  { name: "Home", href: "/" },
   { name: "Streaming", href: "/streaming" },
   { name: "About", href: "/about" },
   { name: "Client Page", href: "/client-page" },
 ]
 
+const HomeNav = () => (
+  <NavLink
+    to="/"
+    className="mr-6 flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text font-bold text-transparent hover:text-primary"
+  >
+    Full Stack Starter
+  </NavLink>
+)
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -20,21 +27,16 @@ export const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-14 items-center px-4">
         <div className="mr-4 hidden md:flex">
-          <NavLink
-            to="/"
-            className="mr-6 flex items-center space-x-2 font-bold hover:text-primary"
-          >
-            Full Stack Starter
-          </NavLink>
+          <HomeNav />
           <nav className="flex items-center space-x-6 text-sm font-medium">
             {menuItems.map((item) => (
               <NavLink
                 key={item.name}
                 to={item.href}
-                className={({ isActive }) =>
+                className={({ isActive, isPending }) =>
                   `group relative transition-colors hover:text-foreground/80 ${
                     isActive ? "text-foreground" : "text-foreground/60"
-                  }`
+                  } ${isPending ? "animate-pulse text-primary/70 opacity-50" : ""}`
                 }
               >
                 {item.name}
@@ -53,27 +55,39 @@ export const Header = () => {
               <span className="sr-only">Toggle Menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="pr-0">
-            <nav className="grid gap-6 text-lg font-medium">
+          <SheetContent side="left" className="w-[300px] pr-0">
+            <HomeNav />
+            <nav className="mt-6 flex flex-col gap-2">
               {menuItems.map((item) => (
                 <NavLink
                   key={item.name}
                   to={item.href}
                   className={({ isActive }) =>
-                    `group flex items-center transition-colors hover:text-foreground/80 ${
+                    `group flex items-center py-2 text-base font-medium transition-colors ${
                       isActive ? "text-foreground" : "text-foreground/60"
                     }`
                   }
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
-                  <span className="ml-2 h-[2px] w-0 bg-primary transition-all duration-200 group-hover:w-4" />
                 </NavLink>
               ))}
             </nav>
           </SheetContent>
         </Sheet>
-        <ThemeSwitcher className="ml-auto" />
+        <div className="mx-2 ml-auto">
+          <NavLink
+            to="/sign-in"
+            className={({ isActive }) =>
+              `mr-4 inline-flex items-center transition-colors hover:text-foreground/80 ${
+                isActive ? "text-foreground" : "text-foreground/60"
+              }`
+            }
+          >
+            Sign In
+          </NavLink>
+          <ThemeSwitcher />
+        </div>
       </div>
     </header>
   )

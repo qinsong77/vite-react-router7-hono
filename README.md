@@ -9,6 +9,8 @@ if a route has `clientLoader`, it's won't support SSR.
 
 todo https://github.com/honojs/vite-plugins/tree/main/packages/dev-server
 
+Environment variables in `.env` powered by [Vite](https://vite.dev/guide/env-and-mode.html#env-variables-and-modes), `server.js` can't access them.
+
 ## Refer
 
 - https://github.com/yusukebe/hono-remix-adapter
@@ -17,6 +19,12 @@ todo https://github.com/honojs/vite-plugins/tree/main/packages/dev-server
 - https://github.com/SoraKumo001/react-router7-hono
 - https://github.com/rphlmr/react-router-hono-server?tab=readme-ov-file#options
 
+https://www.robinwieruch.de/react-feature-architecture/
+https://www.robinwieruch.de/react-component-composition/
+
+## Know Issues
+
+- docker `postgresql-init` not working, flyway `Unrecognised migration name format: 0000_messy_domino.sql`, using `drizzle-kit push` instead.
 
 ---
 # Welcome to React Router!

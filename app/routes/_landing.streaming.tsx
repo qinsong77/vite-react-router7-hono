@@ -3,7 +3,7 @@ import { Separator } from "~/components/ui/separator"
 import { Skeleton } from "~/components/ui/skeleton"
 import { getRandomNumbers } from "~/endpoint"
 
-import type { Route } from "./+types/streaming"
+import type { Route } from "./+types/_landing.streaming"
 
 export async function loader({ context }: Route.LoaderArgs) {
   const stars = await getRandomNumbers()

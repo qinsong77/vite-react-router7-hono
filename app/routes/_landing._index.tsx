@@ -2,24 +2,14 @@ import { siteConfig } from "~/constant"
 import { getRandomNumbers } from "~/endpoint"
 import HomePage from "~/features/home/home-page"
 
-import type { Route } from "./+types/_index"
-
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: siteConfig.name },
-    { name: "description", content: siteConfig.description },
-  ]
-}
+import type { Route } from "./+types/_landing._index"
 
 export async function loader({ context }: Route.LoaderArgs) {
+  console.log("index loader")
   const stars = await getRandomNumbers()
   return { requestId: context.requestId, stars }
 }
 
 export default function _index({ loaderData }: Route.ComponentProps) {
-  return (
-    <div>
-      <HomePage stars={loaderData.stars} />
-    </div>
-  )
+  return <HomePage stars={loaderData.stars} />
 }

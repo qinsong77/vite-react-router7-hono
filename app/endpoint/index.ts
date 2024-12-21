@@ -2,7 +2,7 @@ import { hc } from "hono/client"
 
 import { AppType } from "../../server/app"
 
-export const client = hc<AppType>("http://localhost:3000/")
+export const client = hc<AppType>(import.meta.env.VITE_API_URL)
 
 export async function getRandomNumbers() {
   const response = await fetch(

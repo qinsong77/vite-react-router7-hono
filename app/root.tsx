@@ -11,9 +11,7 @@ import { META_THEME_COLORS } from "~/constant"
 
 import type { Route } from "./+types/root"
 import stylesheet from "./app.css?url"
-import { Header } from "./components/header"
 import { Providers } from "./components/providers"
-import { SiteFooter } from "./components/site-footer"
 
 export const links: Route.LinksFunction = () => [
   // { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -32,25 +30,25 @@ export const links: Route.LinksFunction = () => [
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-    <head>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="theme-color" content="#ffffff" />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#ffffff" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
               try {
                 if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                   document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}')
                 }
               } catch (_) {}
             `,
-        }}
-      />
-      <Meta />
-      <Links />
-    </head>
-    <body className="min-h-svh bg-background font-sans antialiased">
+          }}
+        />
+        <Meta />
+        <Links />
+      </head>
+      <body className="min-h-svh bg-background font-sans antialiased">
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -62,13 +60,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <Providers>
-      <div className="flex min-h-svh flex-col">
-        <Header />
-        <main className="flex-1">
-          <Outlet />
-        </main>
-        <SiteFooter />
-      </div>
+      <Outlet />
     </Providers>
   )
 }

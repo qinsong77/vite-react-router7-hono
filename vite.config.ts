@@ -6,6 +6,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig(({ isSsrBuild }) => ({
   build: {
+    target: isSsrBuild ? "ES2022" : "modules",
     rollupOptions: isSsrBuild
       ? {
           input: "./server/app.ts",
