@@ -1,5 +1,6 @@
 import { type Context, Hono } from "hono"
-import { logger } from "hono/logger"
+import { getCookie } from "hono/cookie"
+// import { logger } from "hono/logger"
 import { requestId } from "hono/request-id"
 import type { RequestIdVariables } from "hono/request-id"
 
@@ -28,7 +29,7 @@ const app = new Hono<{
 }>()
 
 app.use("*", requestId())
-app.use(logger())
+// app.use(logger())
 
 // access the url directly will receive 401, but click the menu can access
 // app.use("/about", authMiddleware)
@@ -56,6 +57,9 @@ const reactRouterMiddleware = createReactRouterMiddleware({
   build: () => import("virtual:react-router/server-build"),
   mode: process.env.NODE_ENV,
   getLoadContext(c: Context<{ Bindings: Bindings; Variables: Variables }>) {
+    const sessionId = getCookie(c, "sessionId")
+    console.log(121)
+    console.log(sessionId)
     return {
       requestId: c.get("requestId"),
     }

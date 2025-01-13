@@ -14,6 +14,9 @@ type LoginFormState = {
   payload?: FormData
 } | null
 
+/**
+ * seems it's better to using actions to handle form, but how to set cookies, and reuse the login in hono login api
+ */
 export function LoginForm({
   className,
   ...props

@@ -9,11 +9,40 @@ crated by `pnpm dlx create-react-router@latest --template remix-run/react-router
 3. `drizzle-kit push`
 4. `pnpm run dev`
 
+## Tech Stack & Tools
+
+- node 22
+- pnpm
+- chore
+  - husky
+  - lint-stage
+  - prettier
+    - use [prettier-plugin-sort-imports](https://github.com/trivago/prettier-plugin-sort-imports) for import sorting
+  - commitlint
+- React 19
+- React Router 7
+- server
+  - Hono 4
+  - drizzle-orm
+  - redis
+  - postgres
+  - zod
+- css: tailwindcss
+- UI Library: [shadcn/ui](https://ui.shadcn.com/)
+- logger: [pino](https://github.com/pinojs/pino) && development pretty logging [pino-pretty](https://github.com/pinojs/pino-pretty)
+- test:
+  - [vitest](https://vitest.dev/)
+  - [react testing library](https://testing-library.com/)
+- i18n(TBD)
+- Docker
+- [ ] Playwright: Write end-to-end tests like a pro or cypress
+- [ ] Github actions/CI
+- [x] Turbo for task cache
+
 ## Notes
 
-if a route has `clientLoader`, it's won't support SSR, preview nothing when access `http://localhost:3000/client-page` directly.
-
-Environment variables in `.env` powered by [Vite](https://vite.dev/guide/env-and-mode.html#env-variables-and-modes), `server.js` can't access them.
+- If a route has `clientLoader`, it's won't support SSR, preview nothing when access `http://localhost:3000/client-page` directly.
+- Environment variables in `.env` powered by [Vite](https://vite.dev/guide/env-and-mode.html#env-variables-and-modes), `server.js` can't access them.
 
 ## TBD
 
@@ -22,9 +51,9 @@ Environment variables in `.env` powered by [Vite](https://vite.dev/guide/env-and
 ## Refer
 
 - https://github.com/remix-run/react-router-templates/blob/main/node-custom-server/server.js
+- [forge42dev/base-stack](https://github.com/forge42dev/base-stack/tree/main), it says `The best way to start your react-router v7 project`
 - https://github.com/yusukebe/hono-remix-adapter
 - https://github.com/sergiodxa/remix-hono/blob/main/src/handler.ts
-- https://github.com/rphlmr/react-router-hono-server
 - https://github.com/SoraKumo001/react-router7-hono
 
 ## Know Issues

@@ -28,7 +28,7 @@
     "lint-and-format:fix": "eslint app server --fix && prettier . --write",
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
-    "turbo:check": "turbo lint format type-check test",
+    "turbo:check-all": "turbo lint format type-check test",
     "turbo:build": "turbo build"
   },
   "dependencies": {

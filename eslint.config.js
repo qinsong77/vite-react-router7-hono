@@ -25,8 +25,11 @@ export default tseslint.config(
       eslintPluginPrettierRecommended,
     ],
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      ecmaVersion: "latest",
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
       parserOptions: {
         project: ["./tsconfig.vite.json", "./tsconfig.app.json"],
         tsconfigRootDir: import.meta.dirname,
