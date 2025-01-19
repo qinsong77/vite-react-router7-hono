@@ -1,6 +1,7 @@
 import { ArrowRight, Code, Star, Zap } from "lucide-react"
 
 import { Button } from "~/components/ui/button"
+import { siteConfig } from "~/constant"
 
 const Hero = () => {
   return (
@@ -22,19 +23,34 @@ const Hero = () => {
         </p>
         <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
           <Button
-            size="lg"
-            className="bg-white text-purple-500 hover:bg-gray-100 hover:text-purple-600"
-          >
-            Quick Start
-            <ArrowRight className="ml-2 size-4" />
-          </Button>
-          <Button
+            asChild
             variant="outline"
             size="lg"
-            className="bg-white text-purple-500 hover:bg-gray-100 hover:text-purple-600"
+            className="text-purple-500 hover:text-purple-600"
           >
-            <Code className="mr-2 size-4" />
-            View on GitHub
+            <a
+              href={siteConfig.links.repoGithub}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Quick Start
+              <ArrowRight className="ml-2 size-4" />
+            </a>
+          </Button>
+          <Button
+            asChild
+            variant="outline"
+            size="lg"
+            className="text-purple-500 hover:text-purple-600"
+          >
+            <a
+              href={siteConfig.links.repoGithub}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Code className="mr-2 size-4" />
+              View on GitHub
+            </a>
           </Button>
         </div>
 

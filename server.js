@@ -32,15 +32,14 @@ if (IS_DEV) {
 
   app.use(reactRouterMiddleware)
 
-  // TODO: viteDevServer.ssrFixStacktrace(error) https://github.com/remix-run/react-router-templates/blob/main/node-custom-server/server.js#L28
   serve(
     {
       fetch: app.fetch,
       port: PORT,
     },
-    (c) => {
-      console.log(c)
-      console.log(`Server is running on http://localhost:${PORT}`)
+    (info) => {
+      console.log(info)
+      console.log(`Server is running on http://localhost:${info.port}`)
     }
   )
 } else {
@@ -73,9 +72,9 @@ if (IS_DEV) {
       fetch: app.fetch,
       port: PORT,
     },
-    (c) => {
-      console.log(c)
-      console.log(`Server is running on http://localhost:${PORT}`)
+    (info) => {
+      console.log(info)
+      console.log(`Server is running on http://localhost:${info.port}`)
     }
   )
 }

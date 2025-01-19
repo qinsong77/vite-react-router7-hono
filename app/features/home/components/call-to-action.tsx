@@ -1,6 +1,7 @@
 import { BookOpen, Github } from "lucide-react"
 
 import { Button } from "~/components/ui/button"
+import { siteConfig } from "~/constant"
 
 const CallToAction = () => {
   return (
@@ -16,20 +17,35 @@ const CallToAction = () => {
           </p>
           <div className="flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row">
             <Button
+              asChild
+              variant="outline"
               size="lg"
               className="w-full bg-white text-purple-600 hover:bg-gray-100 sm:w-auto"
             >
-              {/* eslint-disable-next-line @typescript-eslint/no-deprecated */}
-              <Github className="mr-2 size-5" />
-              Clone Repository
+              <a
+                href={siteConfig.links.repoGithub}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {/* eslint-disable-next-line @typescript-eslint/no-deprecated */}
+                <Github className="mr-2 size-5" />
+                Clone Repository
+              </a>
             </Button>
             <Button
-              size="lg"
+              asChild
               variant="outline"
+              size="lg"
               className="w-full bg-white text-purple-600 hover:bg-gray-100 sm:w-auto"
             >
-              <BookOpen className="mr-2 size-5" />
-              Read Documentation
+              <a
+                href={siteConfig.links.repoGithub}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <BookOpen className="mr-2 size-5" />
+                Read Documentation
+              </a>
             </Button>
           </div>
           <div className="mt-8 flex flex-col items-center justify-center space-y-4 text-sm text-gray-200 sm:flex-row sm:space-x-4 sm:space-y-0">

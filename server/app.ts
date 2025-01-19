@@ -1,37 +1,28 @@
-import { type Context, Hono } from "hono"
+import { Hono } from "hono"
 import { getCookie } from "hono/cookie"
-// import { logger } from "hono/logger"
+import { createMiddleware } from "hono/factory"
+import { logger } from "hono/logger"
 import { requestId } from "hono/request-id"
-import type { RequestIdVariables } from "hono/request-id"
+import type { ServerBuild } from "react-router"
+import { createRequestHandler } from "react-router"
+
+import type { User } from "~server/db/schema"
+import { redisClient } from "~server/redis"
+import type { AppType } from "~server/type/hono-app"
 
 // import { authMiddleware } from "~server/middleware/auth"
 
-import { createReactRouterMiddleware } from "./createReactRouterMiddleware"
 import auth from "./routes/auth"
 import authors from "./routes/authors"
 import books from "./routes/books"
 import user from "./routes/user"
 
-declare module "react-router" {
-  interface AppLoadContext {
-    requestId: string
-  }
-}
-
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-type Bindings = {}
-
-type Variables = {} & RequestIdVariables
-
-const app = new Hono<{
-  Bindings: Bindings
-  Variables: Variables
-}>()
+const app = new Hono<AppType>()
 
 app.use("*", requestId())
-// app.use(logger())
+app.use("/api", logger())
 
-// access the url directly will receive 401, but click the menu can access
+// access the url directly will receive 401, but click the Menu on page, it can access
 // app.use("/about", authMiddleware)
 
 // refer: https://hono.dev/docs/guides/rpc#using-rpc-with-larger-applications
@@ -50,20 +41,40 @@ const routes = app
     return c.json(data)
   })
 
-export type AppType = typeof routes
+declare module "react-router" {
+  interface AppLoadContext {
+    requestId: string
+    userInfo: Omit<User, "passwordHash"> | null
+  }
+}
 
-const reactRouterMiddleware = createReactRouterMiddleware({
+const reactRouterMiddleware = createMiddleware<AppType>(async (c) => {
   // @ts-expect-error - virtual module provided by React Router at build time
-  build: () => import("virtual:react-router/server-build"),
-  mode: process.env.NODE_ENV,
-  getLoadContext(c: Context<{ Bindings: Bindings; Variables: Variables }>) {
-    const sessionId = getCookie(c, "sessionId")
-    console.log(121)
-    console.log(sessionId)
-    return {
-      requestId: c.get("requestId"),
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const build: ServerBuild = await import("virtual:react-router/server-build")
+  const requestHandler = createRequestHandler(build, process.env.NODE_ENV)
+
+  const sessionId = getCookie(c, "sessionId")
+
+  let userInfo: Omit<User, "passwordHash"> | null = null
+
+  if (sessionId) {
+    const cacheStr = await redisClient.get(`session:${sessionId}`)
+
+    if (cacheStr) {
+      try {
+        userInfo = JSON.parse(cacheStr) as User
+      } catch (e) {
+        console.error(e)
+      }
     }
-  },
+  }
+  return await requestHandler(c.req.raw, {
+    requestId: c.get("requestId"),
+    userInfo,
+  })
 })
 
 export { app, reactRouterMiddleware }
+
+export type AppClientType = typeof routes

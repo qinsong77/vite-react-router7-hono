@@ -1,15 +1,5 @@
 import { hc } from "hono/client"
 
-import { AppType } from "../../server/app"
+import type { AppClientType } from "~server/app"
 
-export const client = hc<AppType>(import.meta.env.VITE_API_URL)
-
-export async function getRandomNumbers() {
-  const response = await fetch(
-    "http://www.randomnumberapi.com/api/v1.0/random?min=100&max=1000&count=3"
-  )
-  if (!response.ok) {
-    throw new Error("Failed to fetch random numbers")
-  }
-  return (await response.json()) as number[]
-}
+export const ApiClient = hc<AppClientType>(import.meta.env.VITE_API_URL)

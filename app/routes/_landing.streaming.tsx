@@ -2,18 +2,15 @@ import { Suspense, use } from "react"
 
 import { Separator } from "~/components/ui/separator"
 import { Skeleton } from "~/components/ui/skeleton"
-import { getRandomNumbers } from "~/endpoint"
+import { useLandingLoader } from "~/routes/_landing"
 
 import type { Route } from "./+types/_landing.streaming"
 
 export async function loader({ context }: Route.LoaderArgs) {
-  const stars = await getRandomNumbers()
-
   const nonCriticalData = new Promise<number[]>((resolve) => {
     setTimeout(() => {
       console.log("nonCriticalData resolved")
-      resolve(stars)
-      // Server timeout after 5 seconds will broken https://github.com/remix-run/react-router/issues/12467
+      resolve([10, 30, 60])
     }, 3000)
   })
 
@@ -29,17 +26,19 @@ export async function loader({ context }: Route.LoaderArgs) {
  */
 export default function Streaming({ loaderData }: Route.ComponentProps) {
   return (
-    <div className="container mx-auto space-y-4 pt-4">
+    <div className="container mx-auto space-y-4 p-4">
       <h2 className="text-2xl font-bold">Streaming Page</h2>
-      <Separator className="" />
-      <p>context data, request id: {loaderData.requestId}</p>
-      <Separator className="" />
+      <Separator className="my-2" />
+      <p>hono injected context data, request id: {loaderData.requestId}</p>
+      <Separator className="my-2" />
       <p>critical data: {loaderData.criticalData}</p>
       <Separator className="my-4" />
       <h3>Streaming: Non-critical data</h3>
       <Suspense fallback={<Skeleton className="h-4 w-48" />}>
         <NonCriticalData nonCriticalData={loaderData.nonCriticalData} />
       </Suspense>
+      <Separator className="my-4" />
+      <TestLoaderContext />
     </div>
   )
 }
@@ -51,4 +50,14 @@ function NonCriticalData({
 }) {
   const randomNumber = use(nonCriticalData)
   return <p>Non-critical streaming data: {randomNumber.join(", ")}</p>
+}
+
+function TestLoaderContext() {
+  const { requestId } = useLandingLoader()
+  return (
+    <div>
+      <h3 className="text-xl font-semibold">Index loader context data</h3>
+      <p>requestId: {requestId}</p>
+    </div>
+  )
 }

@@ -1,6 +1,7 @@
 import { zValidator } from "@hono/zod-validator"
 import { Hono } from "hono"
 import { getCookie, setCookie } from "hono/cookie"
+import { HTTPException } from "hono/http-exception"
 import { z } from "zod"
 
 import { db } from "../db"
@@ -55,19 +56,28 @@ const app = new Hono()
       })
 
       if (!user) {
-        return c.json({ message: "Invalid credentials" }, 401)
+        throw new HTTPException(401, { message: "Invalid credentials" })
       }
 
       const isValid = await verifyPassword(password, user.passwordHash)
       if (!isValid) {
-        return c.json({ message: "Invalid credentials" }, 401)
+        throw new HTTPException(401, { message: "Password is incorrect" })
       }
 
       const sessionId = generateSessionId()
-      // TODO using redisClient.hSet save user info
-      await redisClient.set(`session:${sessionId}`, user.id.toString(), {
-        EX: 24 * 60 * 60,
-      })
+      await redisClient.set(
+        `session:${sessionId}`,
+        JSON.stringify({
+          id: user.id,
+          email: user.email,
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt,
+          lastSignInAt: user.lastSignInAt,
+        }),
+        {
+          EX: 24 * 60 * 60,
+        }
+      )
 
       setCookie(c, "sessionId", sessionId, {
         httpOnly: true,

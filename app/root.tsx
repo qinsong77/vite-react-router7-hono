@@ -35,6 +35,14 @@ export const links: Route.LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
 ]
 
+export function loader({ context }: Route.LoaderArgs) {
+  console.log("root loader running")
+  return {
+    requestId: context.requestId,
+    userInfo: context.userInfo,
+  }
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>

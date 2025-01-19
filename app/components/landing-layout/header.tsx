@@ -1,16 +1,37 @@
-import { Menu } from "lucide-react"
+import {
+  Clock,
+  GithubIcon,
+  LogOut,
+  Menu,
+  RssIcon,
+  UserRoundPlus,
+} from "lucide-react"
 import { useState } from "react"
 import { NavLink } from "react-router"
 
 import { ThemeSwitcher } from "~/components/theme-switcher"
-import { Button } from "~/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
+import { Button, buttonVariants } from "~/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "~/components/ui/dropdown-menu"
 import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet"
+import { siteConfig } from "~/constant"
+import { ApiClient } from "~/endpoint"
+import { useRootLoaderData } from "~/hooks/route-loader-data/use-root-loader-data"
+import { cn } from "~/lib/utils"
 
 // https://www.nico.fyi/blog/tailwind-css-group-modifier-to-prevent-react-rerender
 const menuItems = [
   { name: "Streaming", href: "/streaming" },
-  { name: "About", href: "/about" },
   { name: "Client Page", href: "/client-page" },
+  { name: "About", href: "/about" },
 ]
 
 const HomeNav = () => (
@@ -76,20 +97,121 @@ export const Header = () => {
             </nav>
           </SheetContent>
         </Sheet>
-        <div className="mx-2 ml-auto">
+        <div className="mx-2 ml-auto flex items-center">
+          <AuthButton />
           <NavLink
-            to="/sign-in"
-            className={({ isActive }) =>
-              `mr-4 inline-flex items-center transition-colors hover:text-foreground/80 ${
-                isActive ? "text-foreground" : "text-foreground/60"
-              }`
-            }
+            to={siteConfig.links.repoGithub}
+            target="_blank"
+            rel="noreferrer"
           >
-            Sign In
+            <div
+              className={cn(
+                buttonVariants({
+                  variant: "ghost",
+                }),
+                "w-9 px-0"
+              )}
+            >
+              {/* eslint-disable-next-line @typescript-eslint/no-deprecated */}
+              <GithubIcon className="size-4" />
+              <span className="sr-only">GitHub</span>
+            </div>
+          </NavLink>
+          <NavLink
+            to={siteConfig.links.github}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <div
+              className={cn(
+                buttonVariants({
+                  variant: "ghost",
+                }),
+                "w-9 px-0"
+              )}
+            >
+              <RssIcon className="size-3 fill-current" />
+              <span className="sr-only">Twitter</span>
+            </div>
           </NavLink>
           <ThemeSwitcher />
         </div>
       </div>
     </header>
+  )
+}
+
+function AuthButton() {
+  const { userInfo } = useRootLoaderData()
+  if (userInfo) {
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Avatar className="mr-2 size-7 hover:cursor-pointer">
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>signed in</AvatarFallback>
+          </Avatar>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+          side="bottom"
+          align="end"
+          sideOffset={4}
+        >
+          <DropdownMenuLabel className="p-0 font-normal">
+            <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+              <Avatar className="size-8 rounded-lg">
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>signed in</AvatarFallback>
+              </Avatar>
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-semibold">Hello</span>
+                <span className="truncate text-xs">{userInfo.email}</span>
+              </div>
+            </div>
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem>
+              <UserRoundPlus />
+              Created at:
+              <span className="text-sm">
+                {new Date(userInfo.createdAt).toLocaleDateString()}
+              </span>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Clock />
+              Last Sign In:
+              <span className="text-sm">
+                {new Date(userInfo.lastSignInAt).toLocaleDateString()}
+              </span>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            className="hover:cursor-pointer"
+            onClick={async () => {
+              await ApiClient.api.auth.logout.$post()
+              window.location.reload()
+            }}
+          >
+            <LogOut />
+            Log out
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    )
+  }
+  return (
+    <NavLink
+      to="/sign-in"
+      className={({ isActive }) =>
+        `mr-2 inline-flex items-center transition-colors hover:text-foreground/80 ${
+          isActive ? "text-foreground" : "text-foreground/60"
+        }`
+      }
+    >
+      Sign In
+    </NavLink>
   )
 }

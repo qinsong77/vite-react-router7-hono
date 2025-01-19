@@ -1,25 +1,19 @@
 import { Outlet } from "react-router"
+import { useRouteLoaderData } from "react-router"
 
 import { LandingLayout } from "~/components/landing-layout"
 
-// import { siteConfig } from "~/constant"
+import type { Route } from "./+types/_landing"
 
-// import { getRandomNumbers } from "~/endpoint"
-
-// import type { Route } from "./+types/_landing"
-
-// export function meta({}: Route.MetaArgs) {
-//   return [
-//     { title: siteConfig.name },
-//     { name: "description", content: siteConfig.description },
-//   ]
-// }
-
-// export async function loader({ context }: Route.LoaderArgs) {
-//   console.log("landing loader") will run
-//   //   const stars = await getRandomNumbers()
-//   //   return { requestId: context.requestId, stars }
-// }
+export function loader({ context }: Route.LoaderArgs) {
+  console.log("landing layout loader running")
+  // layout loader will block whole page request, but underneath loader will be executed parallel
+  // await new Promise((resolve) => setTimeout(resolve, 10000))
+  return {
+    requestId: context.requestId,
+    text: "root layout loader data",
+  }
+}
 
 export default function IndexLandingLayout() {
   return (
@@ -27,4 +21,14 @@ export default function IndexLandingLayout() {
       <Outlet />
     </LandingLayout>
   )
+}
+
+export const useLandingLoader = () => {
+  const data = useRouteLoaderData<typeof loader>("routes/_landing")
+  if (!data) {
+    throw new Error(
+      "useLandingLoader must be used in a route that is a child of _landing.tsx"
+    )
+  }
+  return data
 }

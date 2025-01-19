@@ -61,6 +61,14 @@ export default tseslint.config(
       "@typescript-eslint/triple-slash-reference": "off",
       ...eslintConfigPrettier.rules,
       "prettier/prettier": ["error", {}, { usePrettierrc: true }],
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        {
+          prefer: "type-imports",
+          disallowTypeAnnotations: true,
+        },
+      ],
+      "@typescript-eslint/no-misused-promises": "off",
     },
   }
 )

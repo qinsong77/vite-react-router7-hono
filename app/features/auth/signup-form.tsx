@@ -5,7 +5,7 @@ import { useNavigate } from "react-router"
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
-import { client } from "~/endpoint"
+import { ApiClient } from "~/endpoint"
 import { cn } from "~/lib/utils"
 
 type SignUpFormState = {
@@ -35,7 +35,7 @@ export function SignUpForm({
         }
       }
 
-      const res = await client.api.auth.register.$post({
+      const res = await ApiClient.api.auth.register.$post({
         json: { email, password },
       })
 

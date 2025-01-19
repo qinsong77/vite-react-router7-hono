@@ -5,7 +5,7 @@ import { useNavigate } from "react-router"
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
-import { client } from "~/endpoint"
+import { ApiClient } from "~/endpoint"
 import { cn } from "~/lib/utils"
 
 type LoginFormState = {
@@ -30,7 +30,7 @@ export function LoginForm({
       const email = formData.get("email") as string
       const password = formData.get("password") as string
 
-      const res = await client.api.auth.login.$post({
+      const res = await ApiClient.api.auth.login.$post({
         json: { email, password },
       })
 

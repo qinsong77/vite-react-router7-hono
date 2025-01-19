@@ -117,14 +117,9 @@ This template includes three Dockerfiles optimized for different package manager
 To build and run using Docker:
 
 ```bash
-# For npm
-docker build -t my-app .
 
 # For pnpm
-docker build -f Dockerfile.pnpm -t my-app .
-
-# For bun
-docker build -f Dockerfile.bun -t my-app .
+docker build -f Dockerfile -t my-app .
 
 # Run the container
 docker run -p 3000:3000 my-app
