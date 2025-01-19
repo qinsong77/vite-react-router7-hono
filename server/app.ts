@@ -1,6 +1,5 @@
 import { Hono } from 'hono'
 import { getCookie } from 'hono/cookie'
-import { createMiddleware } from 'hono/factory'
 import { logger } from 'hono/logger'
 import { requestId } from 'hono/request-id'
 import type { ServerBuild } from 'react-router'
@@ -48,7 +47,7 @@ declare module 'react-router' {
   }
 }
 
-const reactRouterMiddleware = createMiddleware<AppType>(async (c) => {
+app.use(async (c) => {
   // @ts-expect-error - virtual module provided by React Router at build time
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const build: ServerBuild = await import('virtual:react-router/server-build')
@@ -75,6 +74,6 @@ const reactRouterMiddleware = createMiddleware<AppType>(async (c) => {
   })
 })
 
-export { app, reactRouterMiddleware }
+export default app
 
 export type AppClientType = typeof routes

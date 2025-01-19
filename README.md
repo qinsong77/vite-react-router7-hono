@@ -54,7 +54,6 @@ crated by `pnpm dlx create-react-router@latest --template remix-run/react-router
 - [forge42dev/base-stack](https://github.com/forge42dev/base-stack/tree/main), it says `The best way to start your react-router v7 project`
 - https://github.com/yusukebe/hono-remix-adapter
 - https://github.com/sergiodxa/remix-hono/blob/main/src/handler.ts
-- https://github.com/SoraKumo001/react-router7-hono
 
 ## Know Issues
 

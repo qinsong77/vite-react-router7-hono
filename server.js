@@ -1,10 +1,13 @@
 import { serve } from '@hono/node-server'
 import { serveStatic } from '@hono/node-server/serve-static'
+import { Hono } from 'hono'
 
 // Short-circuit the type-checking of the built output.
 const BUILD_PATH = './build/server/index.js'
 const IS_DEV = process.env.NODE_ENV === 'development'
 const PORT = Number.parseInt(process.env.PORT || '3000')
+
+const app = new Hono()
 
 if (IS_DEV) {
   console.log('Starting development server')
@@ -14,9 +17,6 @@ if (IS_DEV) {
       server: { middlewareMode: true },
     }),
   )
-
-  const { app, reactRouterMiddleware } =
-    await viteDevServer.ssrLoadModule('./server/app.ts')
 
   // refer: https://github.com/Blankeos/hono-vike-websockets/blob/main/hono-entry.ts
   app.use(async (c, next) => {
@@ -29,8 +29,20 @@ if (IS_DEV) {
     await viteDevMiddleware()
     await next()
   })
+  app.use(async (c) => {
+    try {
+      const { default: sourceApp } =
+        await viteDevServer.ssrLoadModule('./server/app.ts')
 
-  app.use(reactRouterMiddleware)
+      return await sourceApp.fetch(c.req.raw)
+    } catch (error) {
+      console.error(error)
+      if (typeof error === 'object' && error instanceof Error) {
+        viteDevServer.ssrFixStacktrace(error)
+      }
+      throw error
+    }
+  })
 
   serve(
     {
@@ -38,13 +50,11 @@ if (IS_DEV) {
       port: PORT,
     },
     (info) => {
-      console.log(info)
       console.log(`Server is running on http://localhost:${info.port}`)
     },
   )
 } else {
   console.log('Starting production server')
-  const { app, reactRouterMiddleware } = await import(BUILD_PATH)
 
   app.use(
     '/assets/*',
@@ -65,7 +75,15 @@ if (IS_DEV) {
     }),
   )
 
-  app.use(reactRouterMiddleware)
+  const { default: sourceApp } = await import(BUILD_PATH)
+
+  app.use(async (c) => {
+    try {
+      return await sourceApp.fetch(c.req.raw)
+    } catch (error) {
+      console.error(error)
+    }
+  })
 
   serve(
     {
@@ -74,7 +92,7 @@ if (IS_DEV) {
     },
     (info) => {
       console.log(info)
-      console.log(`Server is running on http://localhost:${info.port}`)
+      console.log(`Prod Server is running on http://localhost:${info.port}`)
     },
   )
 }
