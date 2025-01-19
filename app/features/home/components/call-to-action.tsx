@@ -1,7 +1,7 @@
-import { BookOpen, Github } from "lucide-react"
+import { BookOpen, Github } from 'lucide-react'
 
-import { Button } from "~/components/ui/button"
-import { siteConfig } from "~/constant"
+import { Button } from '~/components/ui/button'
+import { siteConfig } from '~/constant'
 
 const CallToAction = () => {
   return (
@@ -20,7 +20,7 @@ const CallToAction = () => {
               asChild
               variant="outline"
               size="lg"
-              className="w-full bg-white text-purple-600 hover:bg-gray-100 sm:w-auto"
+              className="w-full hover:text-purple-600 sm:w-auto"
             >
               <a
                 href={siteConfig.links.repoGithub}
@@ -36,7 +36,7 @@ const CallToAction = () => {
               asChild
               variant="outline"
               size="lg"
-              className="w-full bg-white text-purple-600 hover:bg-gray-100 sm:w-auto"
+              className="w-full hover:text-purple-600 sm:w-auto"
             >
               <a
                 href={siteConfig.links.repoGithub}

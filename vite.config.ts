@@ -1,15 +1,15 @@
-import { reactRouter } from "@react-router/dev/vite"
-import autoprefixer from "autoprefixer"
-import tailwindcss from "tailwindcss"
-import { defineConfig } from "vite"
-import tsconfigPaths from "vite-tsconfig-paths"
+import { reactRouter } from '@react-router/dev/vite'
+import autoprefixer from 'autoprefixer'
+import tailwindcss from 'tailwindcss'
+import { defineConfig } from 'vite'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig(({ isSsrBuild }) => ({
   build: {
-    target: isSsrBuild ? "ES2022" : "modules",
+    target: isSsrBuild ? 'ES2022' : 'modules',
     rollupOptions: isSsrBuild
       ? {
-          input: "./server/app.ts",
+          input: './server/app.ts',
         }
       : undefined,
   },

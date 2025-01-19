@@ -6,7 +6,7 @@ declare global {
       PORT: string
       SESSION_SECRET: string
       SESSION_EXPIRES: string
-      NODE_ENV: "development" | "production"
+      NODE_ENV: 'development' | 'production'
     }
   }
 }

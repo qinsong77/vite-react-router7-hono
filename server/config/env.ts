@@ -7,7 +7,7 @@ export const env = {
   SESSION_EXPIRES: Number.parseInt(process.env.SESSION_EXPIRES),
 } as const
 
-const requiredEnvVars = ["DATABASE_URL", "REDIS_URL", "SESSION_SECRET"] as const
+const requiredEnvVars = ['DATABASE_URL', 'REDIS_URL', 'SESSION_SECRET'] as const
 
 for (const envVar of requiredEnvVars) {
   if (!env[envVar as keyof typeof env]) {

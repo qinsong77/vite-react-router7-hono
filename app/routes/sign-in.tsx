@@ -1,8 +1,8 @@
-import { GalleryVerticalEnd } from "lucide-react"
-import { NavLink } from "react-router"
+import { GalleryVerticalEnd } from 'lucide-react'
+import { NavLink } from 'react-router'
 
-import placeholder from "~/assets/placeholder.png"
-import { LoginForm } from "~/features/auth/login-form"
+import placeholder from '~/assets/placeholder.png'
+import { LoginForm } from '~/features/auth/login-form'
 
 export default function LoginPage() {
   return (

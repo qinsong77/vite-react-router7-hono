@@ -12,5 +12,9 @@ coverage
 
 app/components/ui
 
+docker-compose.yml
+Dockerfile
+ws-http-requests
+
 # Ignore all HTML files:
 **/*.html

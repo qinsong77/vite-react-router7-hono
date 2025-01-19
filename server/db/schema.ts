@@ -1,17 +1,17 @@
-import { pgTable, serial, timestamp, varchar } from "drizzle-orm/pg-core"
+import { pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core'
 
-export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
-  email: varchar("email", { length: 256 }).notNull().unique(),
-  passwordHash: varchar("passwordHash", { length: 256 }).notNull(),
-  timezone: varchar("timezone", { length: 50 }).notNull().default("UTC"),
-  createdAt: timestamp("created_at", { withTimezone: true })
+export const users = pgTable('users', {
+  id: serial('id').primaryKey(),
+  email: varchar('email', { length: 256 }).notNull().unique(),
+  passwordHash: varchar('passwordHash', { length: 256 }).notNull(),
+  timezone: varchar('timezone', { length: 50 }).notNull().default('UTC'),
+  createdAt: timestamp('created_at', { withTimezone: true })
     .defaultNow()
     .notNull(),
-  updatedAt: timestamp("updated_at", { withTimezone: true })
+  updatedAt: timestamp('updated_at', { withTimezone: true })
     .defaultNow()
     .notNull(),
-  lastSignInAt: timestamp("updated_at", { withTimezone: true })
+  lastSignInAt: timestamp('updated_at', { withTimezone: true })
     .defaultNow()
     .notNull(),
 })

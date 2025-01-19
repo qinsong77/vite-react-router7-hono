@@ -1,14 +1,14 @@
-import { Hono } from "hono"
+import { Hono } from 'hono'
 
-import type { AuthAppType } from "~server/type/hono-app"
+import type { AuthAppType } from '~server/type/hono-app'
 
-import { db } from "../db"
-import { authMiddleware } from "../middleware/auth"
+import { db } from '../db'
+import { authMiddleware } from '../middleware/auth'
 
 const app = new Hono<AuthAppType>()
-  .use("/*", authMiddleware)
-  .get("/profile", async (c) => {
-    const userInfo = c.get("userInfo")
+  .use('/*', authMiddleware)
+  .get('/profile', async (c) => {
+    const userInfo = c.get('userInfo')
     const user = await db.query.users.findFirst({
       where: (users, { eq }) => eq(users.id, userInfo.id),
       columns: {
@@ -21,7 +21,7 @@ const app = new Hono<AuthAppType>()
     })
 
     if (!user) {
-      return c.json({ message: "User not found" }, 404)
+      return c.json({ message: 'User not found' }, 404)
     }
 
     return c.json(user)

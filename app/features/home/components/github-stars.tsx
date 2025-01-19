@@ -1,11 +1,11 @@
-"use client"
+'use client'
 
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card'
 
 const popularRepos = [
-  { name: "React", url: "https://github.com/facebook/react" },
-  { name: "Vue", url: "https://github.com/vuejs/core" },
-  { name: "Angular", url: "https://github.com/angular/angular" },
+  { name: 'React', url: 'https://github.com/facebook/react' },
+  { name: 'Vue', url: 'https://github.com/vuejs/core' },
+  { name: 'Angular', url: 'https://github.com/angular/angular' },
 ] as const
 
 export default function GitHubStars({ stars }: { stars: number[] }) {

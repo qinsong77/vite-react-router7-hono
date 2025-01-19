@@ -5,13 +5,13 @@ import {
   Menu,
   RssIcon,
   UserRoundPlus,
-} from "lucide-react"
-import { useState } from "react"
-import { NavLink } from "react-router"
+} from 'lucide-react'
+import { useState } from 'react'
+import { NavLink } from 'react-router'
 
-import { ThemeSwitcher } from "~/components/theme-switcher"
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
-import { Button, buttonVariants } from "~/components/ui/button"
+import { ThemeSwitcher } from '~/components/theme-switcher'
+import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
+import { Button, buttonVariants } from '~/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,18 +20,18 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet"
-import { siteConfig } from "~/constant"
-import { ApiClient } from "~/endpoint"
-import { useRootLoaderData } from "~/hooks/route-loader-data/use-root-loader-data"
-import { cn } from "~/lib/utils"
+} from '~/components/ui/dropdown-menu'
+import { Sheet, SheetContent, SheetTrigger } from '~/components/ui/sheet'
+import { siteConfig } from '~/constant'
+import { ApiClient } from '~/endpoint'
+import { useRootLoaderData } from '~/hooks/route-loader-data/use-root-loader-data'
+import { cn } from '~/lib/utils'
 
 // https://www.nico.fyi/blog/tailwind-css-group-modifier-to-prevent-react-rerender
 const menuItems = [
-  { name: "Streaming", href: "/streaming" },
-  { name: "Client Page", href: "/client-page" },
-  { name: "About", href: "/about" },
+  { name: 'Streaming', href: '/streaming' },
+  { name: 'Client Page', href: '/client-page' },
+  { name: 'About', href: '/about' },
 ]
 
 const HomeNav = () => (
@@ -57,8 +57,8 @@ export const Header = () => {
                 to={item.href}
                 className={({ isActive, isPending }) =>
                   `group relative transition-colors hover:text-foreground/80 ${
-                    isActive ? "text-foreground" : "text-foreground/60"
-                  } ${isPending ? "animate-pulse text-primary/70 opacity-50" : ""}`
+                    isActive ? 'text-foreground' : 'text-foreground/60'
+                  } ${isPending ? 'animate-pulse text-primary/70 opacity-50' : ''}`
                 }
               >
                 {item.name}
@@ -86,7 +86,7 @@ export const Header = () => {
                   to={item.href}
                   className={({ isActive }) =>
                     `group flex items-center py-2 text-base font-medium transition-colors ${
-                      isActive ? "text-foreground" : "text-foreground/60"
+                      isActive ? 'text-foreground' : 'text-foreground/60'
                     }`
                   }
                   onClick={() => setIsOpen(false)}
@@ -107,9 +107,9 @@ export const Header = () => {
             <div
               className={cn(
                 buttonVariants({
-                  variant: "ghost",
+                  variant: 'ghost',
                 }),
-                "w-9 px-0"
+                'w-9 px-0',
               )}
             >
               {/* eslint-disable-next-line @typescript-eslint/no-deprecated */}
@@ -125,9 +125,9 @@ export const Header = () => {
             <div
               className={cn(
                 buttonVariants({
-                  variant: "ghost",
+                  variant: 'ghost',
                 }),
-                "w-9 px-0"
+                'w-9 px-0',
               )}
             >
               <RssIcon className="size-3 fill-current" />
@@ -207,7 +207,7 @@ function AuthButton() {
       to="/sign-in"
       className={({ isActive }) =>
         `mr-2 inline-flex items-center transition-colors hover:text-foreground/80 ${
-          isActive ? "text-foreground" : "text-foreground/60"
+          isActive ? 'text-foreground' : 'text-foreground/60'
         }`
       }
     >

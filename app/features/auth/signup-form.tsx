@@ -1,12 +1,12 @@
-import { useActionState } from "react"
-import { NavLink } from "react-router"
-import { useNavigate } from "react-router"
+import { useActionState } from 'react'
+import { NavLink } from 'react-router'
+import { useNavigate } from 'react-router'
 
-import { Button } from "~/components/ui/button"
-import { Input } from "~/components/ui/input"
-import { Label } from "~/components/ui/label"
-import { ApiClient } from "~/endpoint"
-import { cn } from "~/lib/utils"
+import { Button } from '~/components/ui/button'
+import { Input } from '~/components/ui/input'
+import { Label } from '~/components/ui/label'
+import { ApiClient } from '~/endpoint'
+import { cn } from '~/lib/utils'
 
 type SignUpFormState = {
   error?: string
@@ -17,20 +17,20 @@ type SignUpFormState = {
 export function SignUpForm({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<"form">) {
+}: React.ComponentPropsWithoutRef<'form'>) {
   const navigate = useNavigate()
   const [state, formAction, isPending] = useActionState<
     SignUpFormState,
     FormData
   >(async (previousState, formData) => {
     try {
-      const email = formData.get("email") as string
-      const password = formData.get("password") as string
-      const confirmPassword = formData.get("confirmPassword") as string
+      const email = formData.get('email') as string
+      const password = formData.get('password') as string
+      const confirmPassword = formData.get('confirmPassword') as string
 
       if (password !== confirmPassword) {
         return {
-          error: "Passwords do not match",
+          error: 'Passwords do not match',
           payload: formData,
         }
       }
@@ -41,18 +41,18 @@ export function SignUpForm({
 
       if (!res.ok) {
         return {
-          error: "Failed to register, please try again",
+          error: 'Failed to register, please try again',
           payload: formData,
         }
       }
 
-      await navigate("/sign-in")
+      await navigate('/sign-in')
       return { success: true }
     } catch (err: unknown) {
       const errorMessage =
         err instanceof Error
           ? err.message
-          : "Failed to register, please try again"
+          : 'Failed to register, please try again'
       return {
         error: errorMessage,
         payload: formData,
@@ -62,7 +62,7 @@ export function SignUpForm({
 
   return (
     <form
-      className={cn("flex flex-col gap-6", className)}
+      className={cn('flex flex-col gap-6', className)}
       {...props}
       action={formAction}
     >
@@ -82,7 +82,7 @@ export function SignUpForm({
             placeholder="m@example.com"
             required
             disabled={isPending}
-            defaultValue={(state?.payload?.get("email") ?? "") as string}
+            defaultValue={(state?.payload?.get('email') ?? '') as string}
           />
         </div>
         <div className="grid gap-2">
@@ -93,7 +93,7 @@ export function SignUpForm({
             type="password"
             required
             disabled={isPending}
-            defaultValue={(state?.payload?.get("password") ?? "") as string}
+            defaultValue={(state?.payload?.get('password') ?? '') as string}
           />
         </div>
         <div className="grid gap-2">
@@ -105,7 +105,7 @@ export function SignUpForm({
             required
             disabled={isPending}
             defaultValue={
-              (state?.payload?.get("confirmPassword") ?? "") as string
+              (state?.payload?.get('confirmPassword') ?? '') as string
             }
           />
         </div>
@@ -113,7 +113,7 @@ export function SignUpForm({
           <div className="text-sm text-red-500">{state.error}</div>
         )}
         <Button type="submit" className="w-full" disabled={isPending}>
-          {isPending ? "Creating account..." : "Create account"}
+          {isPending ? 'Creating account...' : 'Create account'}
         </Button>
         <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
           <span className="relative z-10 bg-background px-2 text-muted-foreground">
@@ -131,7 +131,7 @@ export function SignUpForm({
         </Button>
       </div>
       <div className="text-center text-sm">
-        Already have an account?{" "}
+        Already have an account?{' '}
         <NavLink to="/sign-in" className="underline underline-offset-4">
           Sign in
         </NavLink>

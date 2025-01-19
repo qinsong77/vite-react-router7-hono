@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { useState } from 'react'
 
-import { Button } from "~/components/ui/button"
-import { ApiClient } from "~/endpoint"
+import { Button } from '~/components/ui/button'
+import { ApiClient } from '~/endpoint'
 
 // import { useLandingLoader } from "~/routes/_landing"
 
-import type { Route } from "./+types/_landing.client-page"
+import type { Route } from './+types/_landing.client-page'
 
 export async function clientLoader() {
   const res = await ApiClient.api.randomnumberapi.$get()
@@ -27,7 +27,7 @@ export default function ClientPage({ loaderData }: Route.ComponentProps) {
       <p>{window.innerWidth}</p>
       <p>{counter}</p>
       <Button onClick={() => setCounter((prev) => prev + 1)}>add</Button>
-      <p>client loader data: {loaderData.numbers.join(",")}</p>
+      <p>client loader data: {loaderData.numbers.join(',')}</p>
       {/*<TestLoaderContext />*/}
     </div>
   )

@@ -1,9 +1,9 @@
-import { drizzle } from "drizzle-orm/node-postgres"
-import pg from "pg"
+import { drizzle } from 'drizzle-orm/node-postgres'
+import pg from 'pg'
 
-import { env } from "../config/env"
-import logger from "../utils/logger"
-import * as schema from "./schema"
+import { env } from '../config/env'
+import logger from '../utils/logger'
+import * as schema from './schema'
 
 const { Pool } = pg
 
@@ -13,6 +13,6 @@ const pool = new Pool({
 
 export const db = drizzle(pool, { schema })
 
-await db.execute("select 1")
+await db.execute('select 1')
 
-logger.info("pg connected")
+logger.info('pg connected')

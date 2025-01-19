@@ -7,50 +7,50 @@ import {
   Server,
   Terminal,
   Zap,
-} from "lucide-react"
+} from 'lucide-react'
 
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card'
 
 const technologies = [
   {
-    name: "React 19",
+    name: 'React 19',
     description:
-      "Build user interfaces with the latest React features including use hooks",
+      'Build user interfaces with the latest React features including use hooks',
     icon: ReactIcon,
   },
   {
-    name: "Vite",
-    description: "Lightning fast HMR and optimized build process",
+    name: 'Vite',
+    description: 'Lightning fast HMR and optimized build process',
     icon: Zap,
   },
   {
-    name: "React Router 7",
-    description: "Modern routing with data loading and mutations",
+    name: 'React Router 7',
+    description: 'Modern routing with data loading and mutations',
     icon: Repeat,
   },
   {
-    name: "Edge Runtime",
-    description: "Deploy globally with minimal latency",
+    name: 'Edge Runtime',
+    description: 'Deploy globally with minimal latency',
     icon: Server,
   },
   {
-    name: "Hono",
-    description: "Ultra-fast web framework for modern runtimes",
+    name: 'Hono',
+    description: 'Ultra-fast web framework for modern runtimes',
     icon: Cog,
   },
   {
-    name: "TypeScript",
-    description: "Write safer, more maintainable code",
+    name: 'TypeScript',
+    description: 'Write safer, more maintainable code',
     icon: Terminal,
   },
   {
-    name: "Node.js",
-    description: "Built on the powerful V8 JavaScript engine",
+    name: 'Node.js',
+    description: 'Built on the powerful V8 JavaScript engine',
     icon: Layers,
   },
   {
-    name: "Drizzle ORM",
-    description: "Next-generation TypeScript ORM",
+    name: 'Drizzle ORM',
+    description: 'Next-generation TypeScript ORM',
     icon: Database,
   },
 ]

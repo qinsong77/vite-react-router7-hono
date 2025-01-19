@@ -1,21 +1,21 @@
-import { Suspense, use } from "react"
+import { Suspense, use } from 'react'
 
-import { Separator } from "~/components/ui/separator"
-import { Skeleton } from "~/components/ui/skeleton"
-import { useLandingLoader } from "~/routes/_landing"
+import { Separator } from '~/components/ui/separator'
+import { Skeleton } from '~/components/ui/skeleton'
+import { useLandingLoader } from '~/routes/_landing'
 
-import type { Route } from "./+types/_landing.streaming"
+import type { Route } from './+types/_landing.streaming'
 
 export async function loader({ context }: Route.LoaderArgs) {
   const nonCriticalData = new Promise<number[]>((resolve) => {
     setTimeout(() => {
-      console.log("nonCriticalData resolved")
+      console.log('nonCriticalData resolved')
       resolve([10, 30, 60])
     }, 3000)
   })
 
   const criticalData = await new Promise((resolve) =>
-    setTimeout(() => resolve("critical"), 300)
+    setTimeout(() => resolve('critical'), 300),
   )
 
   return { criticalData, nonCriticalData, requestId: context.requestId }
@@ -46,10 +46,10 @@ export default function Streaming({ loaderData }: Route.ComponentProps) {
 function NonCriticalData({
   nonCriticalData,
 }: {
-  nonCriticalData: Route.ComponentProps["loaderData"]["nonCriticalData"]
+  nonCriticalData: Route.ComponentProps['loaderData']['nonCriticalData']
 }) {
   const randomNumber = use(nonCriticalData)
-  return <p>Non-critical streaming data: {randomNumber.join(", ")}</p>
+  return <p>Non-critical streaming data: {randomNumber.join(', ')}</p>
 }
 
 function TestLoaderContext() {

@@ -1,12 +1,12 @@
-import { useActionState } from "react"
-import { NavLink } from "react-router"
-import { useNavigate } from "react-router"
+import { useActionState } from 'react'
+import { NavLink } from 'react-router'
+import { useNavigate } from 'react-router'
 
-import { Button } from "~/components/ui/button"
-import { Input } from "~/components/ui/input"
-import { Label } from "~/components/ui/label"
-import { ApiClient } from "~/endpoint"
-import { cn } from "~/lib/utils"
+import { Button } from '~/components/ui/button'
+import { Input } from '~/components/ui/input'
+import { Label } from '~/components/ui/label'
+import { ApiClient } from '~/endpoint'
+import { cn } from '~/lib/utils'
 
 type LoginFormState = {
   error?: string
@@ -20,15 +20,15 @@ type LoginFormState = {
 export function LoginForm({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<"form">) {
+}: React.ComponentPropsWithoutRef<'form'>) {
   const navigate = useNavigate()
   const [state, formAction, isPending] = useActionState<
     LoginFormState,
     FormData
   >(async (previousState, formData) => {
     try {
-      const email = formData.get("email") as string
-      const password = formData.get("password") as string
+      const email = formData.get('email') as string
+      const password = formData.get('password') as string
 
       const res = await ApiClient.api.auth.login.$post({
         json: { email, password },
@@ -36,19 +36,19 @@ export function LoginForm({
 
       if (!res.ok) {
         return {
-          error: "Failed to login, please check your email and password",
+          error: 'Failed to login, please check your email and password',
           payload: formData,
         }
       }
 
       // const data = await res.json()
-      await navigate("/")
+      await navigate('/')
       return { success: true }
     } catch (err: unknown) {
       const errorMessage =
         err instanceof Error
           ? err.message
-          : "Failed to login, please check your email and password"
+          : 'Failed to login, please check your email and password'
       return {
         error: errorMessage,
         payload: formData,
@@ -58,7 +58,7 @@ export function LoginForm({
 
   return (
     <form
-      className={cn("flex flex-col gap-6", className)}
+      className={cn('flex flex-col gap-6', className)}
       {...props}
       action={formAction}
     >
@@ -78,7 +78,7 @@ export function LoginForm({
             placeholder="m@example.com"
             required
             disabled={isPending}
-            defaultValue={(state?.payload?.get("email") ?? "") as string}
+            defaultValue={(state?.payload?.get('email') ?? '') as string}
           />
         </div>
         <div className="grid gap-2">
@@ -97,14 +97,14 @@ export function LoginForm({
             type="password"
             required
             disabled={isPending}
-            defaultValue={(state?.payload?.get("password") ?? "") as string}
+            defaultValue={(state?.payload?.get('password') ?? '') as string}
           />
         </div>
         {state?.error && (
           <div className="text-sm text-red-500">{state.error}</div>
         )}
         <Button type="submit" className="w-full" disabled={isPending}>
-          {isPending ? "Logging in..." : "Login"}
+          {isPending ? 'Logging in...' : 'Login'}
         </Button>
         <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
           <span className="relative z-10 bg-background px-2 text-muted-foreground">
@@ -122,7 +122,7 @@ export function LoginForm({
         </Button>
       </div>
       <div className="text-center text-sm">
-        Don&apos;t have an account?{" "}
+        Don&apos;t have an account?{' '}
         <NavLink to="/sign-up" className="underline underline-offset-4">
           Sign up
         </NavLink>

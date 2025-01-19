@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import { ThemeProvider } from "./theme-provider"
+import { ThemeProvider } from './theme-provider'
 
 // import { TooltipProvider } from '@/components/ui/tooltip'
 

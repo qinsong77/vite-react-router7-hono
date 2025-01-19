@@ -1,8 +1,8 @@
-import { CloudIcon, FileTextIcon, ServerIcon, StarIcon } from "lucide-react"
+import { CloudIcon, FileTextIcon, ServerIcon, StarIcon } from 'lucide-react'
 
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
-import { useRootLoaderData } from "~/hooks/route-loader-data/use-root-loader-data"
-import { useLandingIndexLoaderData } from "~/routes/_landing._index"
+import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card'
+import { useRootLoaderData } from '~/hooks/route-loader-data/use-root-loader-data'
+import { useLandingIndexLoaderData } from '~/routes/_landing._index'
 
 export default function ServerInfoCard() {
   const { requestId } = useRootLoaderData()
@@ -11,27 +11,27 @@ export default function ServerInfoCard() {
   const items = [
     {
       icon: ServerIcon,
-      title: "Request Id from Hono context, root Loader",
+      title: 'Request Id from Hono context, root Loader',
       value: requestId,
-      className: "text-blue-500",
+      className: 'text-blue-500',
     },
     {
       icon: CloudIcon,
-      title: "Index Loader Data",
+      title: 'Index Loader Data',
       value: indexLoaderData,
-      className: "text-orange-500",
+      className: 'text-orange-500',
     },
     {
       icon: FileTextIcon,
-      title: "Server Loader Data",
+      title: 'Server Loader Data',
       value: indexLoaderData.text,
-      className: "text-green-500",
+      className: 'text-green-500',
     },
     {
       icon: StarIcon,
-      title: "Random Number from external API",
-      value: indexLoaderData.numbers.join(", "),
-      className: "text-yellow-500",
+      title: 'Random Number from external API',
+      value: indexLoaderData.numbers.join(', '),
+      className: 'text-yellow-500',
     },
   ]
 
@@ -60,7 +60,7 @@ export default function ServerInfoCard() {
                 </div>
               </CardHeader>
               <CardContent>
-                {typeof item.value === "object" ? (
+                {typeof item.value === 'object' ? (
                   Object.entries(item.value).map(([key, value]) => (
                     <p
                       key={key}

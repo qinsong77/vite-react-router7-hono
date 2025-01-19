@@ -1,7 +1,7 @@
-import { ArrowRight, Code, Star, Zap } from "lucide-react"
+import { ArrowRight, Code, Star, Zap } from 'lucide-react'
 
-import { Button } from "~/components/ui/button"
-import { siteConfig } from "~/constant"
+import { Button } from '~/components/ui/button'
+import { siteConfig } from '~/constant'
 
 const Hero = () => {
   return (

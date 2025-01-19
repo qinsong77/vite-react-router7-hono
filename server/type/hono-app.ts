@@ -1,6 +1,6 @@
-import type { RequestIdVariables } from "hono/request-id"
+import type { RequestIdVariables } from 'hono/request-id'
 
-import type { User } from "~server/db/schema"
+import type { User } from '~server/db/schema'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 type Bindings = {}
